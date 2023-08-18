@@ -13,7 +13,7 @@ if [[ $? -eq  0 ]]
 fi
 ### Clean Log
 cd /sdcard/Android/data/com.riotgames.league.wildriftvn/files/Log/
-rm $(ls -t *.log 2> /sdcard/log.txt | grep -v 2> /sdcard/log.txt $(ls -t *.log 2> /sdcard/log.txt| head -n 1)) 2> /sdcard/log.txt
+rm $(ls -t *.log| grep -v $(ls -t *.log | head -n 1)) 2> /sdcard/log.txt
 if [[ $? -eq 0 ]]
 	then
 		echo "Logs are cleaned"
