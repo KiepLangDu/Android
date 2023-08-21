@@ -29,4 +29,7 @@ if [[ $? -eq 0 ]]
 fi
 }
 Start
+echo "This result will clear after 5 seconds"
+ping -c 5 127.0.0.1 > /sdcard/log.txt
 rm /sdcard/log.txt
+clear
