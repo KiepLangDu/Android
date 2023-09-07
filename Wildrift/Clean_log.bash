@@ -30,6 +30,19 @@ Logs(){
 	else
 		echo "Your logs are ready cleaned before"
 	fi
+Dalvik
+}
+
+Dalvik(){
+	echo "Delete Dalvik-cache"
+	flag=$(ls -l /data/dalvik-cache|wc -l)
+	if [[ $flag -eq 1 ]]
+	then 
+		echo "Dalvik-cahe are cleaned before"
+	else
+		rm -rf /data/dalvik-cache/*
+		echo "Dalvik-cache are clean"
+	fi
 }
 Start
 unalias ls
