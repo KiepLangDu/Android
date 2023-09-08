@@ -1,14 +1,14 @@
 #Delete /data/data/ *appname*/cache except for system
-#Only run with root
+#Run with root
 #
 #
-limit=$(find /data/data/ -name cache |grep -v system |wc -l)
+limit=$(find /data/data/ -name cache  |wc -l)
 #echo $limit
 x=1
 while [ $x -le $limit ]
 do
-	flag=$(find /data/data/ -name cache |grep -v system |head -n $x | tail -n 1)
-	echo "Current flag is:  $flag"
+	flag=$(find /data/data/ -name cache |head -n $x | tail -n 1)
+	echo "Removing:  $flag"
 	rm -rf $flag
 	x=$(($x+1))
 done
