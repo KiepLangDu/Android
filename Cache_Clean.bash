@@ -1,4 +1,4 @@
-#Delete /data/data/ *appname*/cache except for system
+#Delete /data/data/ *appname*/cache 
 #Run with root
 #
 #
