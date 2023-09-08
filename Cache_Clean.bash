@@ -1,13 +1,15 @@
-Start(){
-	echo "Clear cache"
-	rm -rf $(find /data/data/ -name cache |grep focus)
-	rm -rf $(find /data/data/ -name cache |grep zalo)
-	rm -rf $(find /data/data/ -name cache |grep revanced| head -n 1)
-	rm -rf $(find /data/data/ -name cache |grep revanced| tail -n 1)
-	rm -rf $(find /data/data/ -name cache |grep photo)
-	rm -rf $(find /data/data/ -name cache |grep chotot)
-	rm -rf $(find /data/data/ -name cache |grep vending)
-	rm -rf $(find /data/data/ -name cache |grep duolingo)
-	echo "Done"
-}
-Start
+#Delete /data/data/ *appname*/cache except for system
+#Only run with root
+#
+#
+limit=$(find /data/data/ -name cache |grep -v system |wc -l)
+#echo $limit
+x=1
+while [ $x -le $limit ]
+do
+	flag=$(find /data/data/ -name cache |grep -v system |head -n $x | tail -n 1)
+	echo "Current flag is:  $flag"
+	rm -rf $flag
+	x=$(($x+1))
+done
+echo "Done!"
