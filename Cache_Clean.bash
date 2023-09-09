@@ -3,7 +3,7 @@
 #
 #
 limit=$(find /data/data/ -name cache  |wc -l)
-#echo $limit
+echo $limit
 x=1
 while [ $x -le $limit ]
 do
