@@ -3,6 +3,7 @@
 #
 #
 Start(){
+	Testing
 	clear
 	echo "This shell is to remove cache in /data/data/*appname*/cache. Please wait until the shell counts the number of total directories "
 	limit=$(find /data/data/ -name cache  |wc -l)
@@ -10,7 +11,7 @@ Start(){
 	half=$(expr $limit / 2)
 	three_quater=$(expr $quater \* 3)
 
-	echo " The number of cache directory will be remove is: $limit \nDo you want to remove them (y) or (n)"
+	echo "The number of cache directory will be remove is: $limit \nDo you want to remove them (y) or (n)"
 	read flag
 	Case
 }
@@ -21,23 +22,30 @@ Clean(){
 		flag=$(find /data/data/ -name cache |head -n $x | tail -n 1)
 		if [[ $x -eq $quater ]]
 		then
-			echo "Your progress is 25%\nCurrent flag is: $flag"
+			sed -i '9s/.*/\t\tif [[ $x -eq 0 ]]/' Showing.bash
+			printf "Your progress is 25%%. \nCurrent flag is: $flag \n"
+			./Showing.bash
 		elif [[ $x -eq $half ]]
 		then
-			echo "Your progress is 50%\nCurrent flag is: $flag"
+			sed -i '9s/.*/\t\tif [[ $x -eq 0 || $y -eq 0 ]]/' Showing.bash
+			printf  "Your progress is 50%%. \nCurrent flag is: $flag \n"
+			./Showing.bash
 		elif [[ $x -eq $three_quater ]]
-			then
-			echo "Your progress is 75%\nCurrent flag is: $flag"
+		then
+			sed -i '9s/.*/\t\tif [[ $x -eq 0 || $y -eq 0 || $x -eq $limit ]]/' Showing.bash
+			printf "Your progress is 75%%. \nCurrent flag is: $flag \n"
+			./Showing.bash
 		elif [[ $x -eq $limit ]]
 		then
+			printf "Your progress is 100%%. \nFinal flag is: $flag \n"
 			Showing
-			echo "Your progress is 100%\nFinal flag is: $flag"
 		fi
 		#echo "Removing:  $flag"
 		rm -rf $flag
 		x=$(($x+1))
 	done
 	echo "Done!"
+	Finish
 }
 Case(){
 
@@ -60,7 +68,7 @@ Case(){
 ################## Showing progress ###############
 Showing(){
 	x=0
-	limit=20
+	limit=15
 	while [ $x -le $limit ]
 	do
 		y=0
@@ -79,4 +87,13 @@ Showing(){
 	done
 }
 ################# End of Showing progress ##########
+Testing(){
+	cat Cache_Clean.bash | head -n 88 | tail -n 20 > Showing.bash
+	chmod +x Showing.bash
+	echo Showing >> Showing.bash	
+}
+Finish(){
+	rm -rf Showing.bash
+}
 Start
+
