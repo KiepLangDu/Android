@@ -96,4 +96,3 @@ Finish(){
 	rm -rf Showing.bash
 }
 Start
-
